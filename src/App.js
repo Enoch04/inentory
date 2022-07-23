@@ -12,6 +12,7 @@ import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
 } from './utils/firebase/firebase.utils';
+import Footer from './components/footer/footer.component';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -28,14 +29,16 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Routes>
-      <Route path='/' element={<Navigation />}>
+    <>
+      <Navigation />
+      <Routes>
         <Route index element={<Home />} />
         <Route path='shop/*' element={<Shop />} />
         <Route path='auth' element={<Authentication />} />
         <Route path='checkout' element={<Checkout />} />
-      </Route>
-    </Routes>
+      </Routes>
+      <Footer />
+    </>
   );
 };
 

@@ -1,49 +1,53 @@
 import DirectoryItem from '../directory-item/directory-item.component';
 
-import { DirectoryContainer } from './directory.styles';
+import { DirectoryContainer, Sec, CategoriesContainer, CategoryCard } from './directory.styles';
 
 import HeroBackground from '../hero/hero';
 
 const categories = [
   {
     id: 1,
-    title: 'hats',
-    imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
+    title: 'Home',
+    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/crwn-clothing-41649.appspot.com/o/menu.png?alt=media&token=fac15b1b-9ada-4f12-a0b7-0baf0d3eb81d',
     route: 'shop/hats',
+    desc: "Try our Sweat items!",
   },
   {
     id: 2,
-    title: 'jackets',
-    imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
+    title: 'Gallery',
+    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/crwn-clothing-41649.appspot.com/o/gallery.png?alt=media&token=fe1e4a64-9dea-48ec-ba1c-4fa01c10d746',
     route: 'shop/jackets',
+    desc: "Take a look at our previous work! ",
   },
   {
     id: 3,
-    title: 'sneakers',
-    imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
+    title: 'About us',
+    imageUrl: 'https://firebasestorage.googleapis.com/v0/b/crwn-clothing-41649.appspot.com/o/karla.png?alt=media&token=7a21c69f-687e-483b-8955-35b00b672128',
     route: 'shop/sneakers',
+    desc: `Sweat Hu$tle is part of a wave of succesful start-ups who are proving that
+          fundamentally realigning the balance between profit and  can generate win-win
+          relationshipa for everyone involved.`,
   },
-  {
-    id: 4,
-    title: 'womens',
-    imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
-    route: 'shop/womens',
-  },
-  {
-    id: 5,
-    title: 'mens',
-    imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
-    route: 'shop/mens',
-  },
+  
 ];
 
 const Directory = () => {
   return (
     <DirectoryContainer >
       <HeroBackground />
-      {categories.map((category) => (
-        <DirectoryItem key={category.id} category={category} />
-      ))}
+      <CategoriesContainer>
+        {categories.map((category) =>{
+          const { title, imageUrl, route, desc } = category;
+          return(
+          <Sec >
+            <CategoryCard>
+              <img src={ imageUrl } alt={title} />
+              <h2>{title}</h2>
+              <h4>{desc}</h4>
+            </CategoryCard>
+          </Sec>
+          )})}
+      </CategoriesContainer>
     </DirectoryContainer>
   );
 };

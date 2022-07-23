@@ -16,6 +16,7 @@ import {
   NavLinks,
   NavLink,
   LogoContainer,
+  Title,
 } from './navigation.styles';
 
 const Navigation = () => {
@@ -28,6 +29,7 @@ const Navigation = () => {
         <LogoContainer to='/'>
           <CrwnLogo className='logo' />
         </LogoContainer>
+        <Title>sweat hu$tle</Title>
         <NavLinks>
           <NavLink to='/shop'>SHOP</NavLink>
 

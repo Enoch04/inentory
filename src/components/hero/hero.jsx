@@ -1,14 +1,16 @@
-import ReactPlayer from 'react-player';
-import { HeroContainer } from './hero.styles';
+import { HeroContainer, HomeContainer, Title } from './hero.styles';
 
 
 const HeroBackground = () => {
     
     return(
-    <HeroContainer>
-        <h1>SWEAT HU$TLE</h1>
-        <h2>FOR THE NEXT BIG SORRY WE GOT YOU COVER</h2>
-    </HeroContainer>
+        <HomeContainer>
+            <HeroContainer>
+                <h1>
+                    <Title>FOR THE NEXT BIG SORRY WE GOT YOU COVER</Title>
+                </h1>
+            </HeroContainer>
+        </HomeContainer>
     );
 };
 
