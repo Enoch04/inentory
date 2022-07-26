@@ -1,12 +1,13 @@
 import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 
-import { selectCurrentUser } from '../../store/user/user.selector';
+import { selectCurrentUser, selectAdminUser } from '../../store/user/user.selector';
 import { selectIsCartOpen } from '../../store/cart/cart.selector';
+import { setAdminUser } from '../../store/user/user.action';
 
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
 import { signOutUser } from '../../utils/firebase/firebase.utils';
@@ -17,12 +18,19 @@ import {
   NavLink,
   LogoContainer,
   Title,
+  ListMenu,
 } from './navigation.styles';
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
+  const adminUser = useSelector(selectAdminUser);
+  const dispatch = useDispatch();
 
+  const signOutHandler = () => {
+    signOutUser();
+    dispatch(setAdminUser(false));
+  }
   return (
     <Fragment>
       <NavigationContainer>
@@ -31,15 +39,22 @@ const Navigation = () => {
         </LogoContainer>
         <Title>sweat hu$tle</Title>
         <NavLinks>
-          <NavLink to='/shop'>SHOP</NavLink>
-
-          {currentUser ? (
-            <NavLink as='span' onClick={signOutUser}>
-              SIGN OUT
-            </NavLink>
-          ) : (
-            <NavLink to='/auth'>SIGN IN</NavLink>
-          )}
+            <ListMenu>
+              <ul >
+                <li><NavLink to='/shop'>SHOP</NavLink></li>
+                {currentUser ? (
+                  <li><NavLink as='span'>ACOUNT</NavLink>
+                    <ul>
+                      {adminUser ? (<li><NavLink to='/admin'>ADMIN</NavLink></li>): (<span />)}
+                      <li><NavLink to='/orders'>ORDERS</NavLink></li>
+                      <li><NavLink as='span' onClick={signOutHandler}>SIGN OUT</NavLink></li>
+                    </ul>
+                  </li>
+                ) : (
+                  <li><NavLink to='/auth'>SIGN IN</NavLink></li>
+                )}
+              </ul>
+            </ListMenu>
           <CartIcon />
         </NavLinks>
         {isCartOpen && <CartDropdown />}

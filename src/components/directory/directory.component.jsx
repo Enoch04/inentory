@@ -1,5 +1,3 @@
-import DirectoryItem from '../directory-item/directory-item.component';
-
 import { DirectoryContainer, Sec, CategoriesContainer, CategoryCard } from './directory.styles';
 
 import HeroBackground from '../hero/hero';
@@ -37,7 +35,7 @@ const Directory = () => {
       <HeroBackground />
       <CategoriesContainer>
         {categories.map((category) =>{
-          const { title, imageUrl, route, desc } = category;
+          const { title, imageUrl, desc } = category;
           return(
           <Sec >
             <CategoryCard>

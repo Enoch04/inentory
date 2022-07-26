@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import { PaymentElement, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { useSelector, useDispatch } from 'react-redux';
+import { addOrderToUserHistory } from '../../utils/firebase/firebase.utils';
 
-import { selectCartTotal } from '../../store/cart/cart.selector';
+import { selectCartTotal, selectCartItems } from '../../store/cart/cart.selector';
 import { selectCurrentUser } from '../../store/user/user.selector';
+import { clearCart } from '../../store/cart/cart.actions';
 
 import { FormContainer } from './payment-form.styles';
 import { BUTTON_TYPE_CLASSES } from '../button/button.component';
@@ -11,9 +14,13 @@ import { BUTTON_TYPE_CLASSES } from '../button/button.component';
 import { PaymentButton, PaymentFormContainer } from './payment-form.styles';
 
 const PaymentForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const stripe = useStripe();
   const elements = useElements();
   const amount = useSelector(selectCartTotal);
+  const cartItems = useSelector(selectCartItems);
   const currentUser = useSelector(selectCurrentUser);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
@@ -39,7 +46,7 @@ const PaymentForm = () => {
       payment_method: {
         card: elements.getElement(CardElement),
         billing_details: {
-          name: currentUser ? currentUser.displayName : 'Yihua Zhang',
+          name: currentUser ? currentUser.displayName : 'Guest',
         },
       },
     });
@@ -50,6 +57,9 @@ const PaymentForm = () => {
       alert(paymentResult.error.message);
     } else {
       if (paymentResult.paymentIntent.status === 'succeeded') {
+        addOrderToUserHistory(currentUser,cartItems,amount);
+        dispatch(clearCart());
+        navigate('/')
         alert('Payment Successful!');
       }
     }

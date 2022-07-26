@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
+
+import { setAdminUser } from '../../store/user/user.action';
 
 import {
   signInAuthUserWithEmailAndPassword,
@@ -19,8 +22,9 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -28,13 +32,18 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     await signInWithGooglePopup();
+    navigate('/');
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password);
+      const user = await signInAuthUserWithEmailAndPassword(email, password);
+      const {uid} = user.user;
+      const admin = uid === 'CFur3nnWVkec7GRUMhHqURh2Rtx1';
+      console.log(admin);
+      dispatch(setAdminUser(admin));
       resetFormFields();
       navigate('/');
     } catch (error) {
@@ -77,7 +86,7 @@ const SignInForm = () => {
             type='button'
             onClick={signInWithGoogle}
           >
-            Sign In With Google
+            Google Sign In
           </Button>
         </ButtonsContainer>
       </form>

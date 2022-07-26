@@ -14,6 +14,11 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
             ...state,
             cartItems: payload,
         };
+        case CART_ACTION_TYPES.SET_CLEAR_ITEMS:
+        return {
+            ...state,
+            cartItems: payload,
+        };
         case CART_ACTION_TYPES.SET_IS_CART_OPEN:
             return {
                 ...state,

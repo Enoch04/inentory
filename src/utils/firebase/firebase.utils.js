@@ -18,6 +18,8 @@ import {
   writeBatch,
   query,
   getDocs,
+  updateDoc,
+  arrayUnion,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -46,6 +48,7 @@ export const signInWithGoogleRedirect = () =>
 
 export const db = getFirestore();
 
+
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd,
@@ -61,6 +64,34 @@ export const addCollectionAndDocuments = async (
 
   await batch.commit();
   console.log('done');
+};
+
+export const addOrderToUserHistory = async (userAuth,objectsToAdd, totalAmount) => {
+  const userDocRef = doc(db, 'users', userAuth.uid);
+  
+  const createdAt = new Date();
+  const ran = Math.floor(Math.random() * 1000000);
+  const order = { 
+    orderNumber : ran + 'D'+ createdAt.getDay(),
+    createdAt,
+    total: totalAmount,
+    details: objectsToAdd
+  }
+  try{
+    await updateDoc(userDocRef,{
+    history: arrayUnion(order)
+    });
+  } catch(error){
+    console.log('error adding cart items to user history', error.message);
+  } 
+};
+
+export const getOrdersHistory = async () => {
+  const collectionRef = collection(db, 'users');
+  const q = query(collectionRef);
+  
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map((doc) => doc.data());
 };
 
 export const getCategoriesAndDocuments = async () => {
@@ -90,6 +121,7 @@ export const createUserDocumentFromAuth = async (
         displayName,
         email,
         createdAt,
+        history:[],
         ...additionalInformation,
       });
     } catch (error) {
@@ -99,6 +131,8 @@ export const createUserDocumentFromAuth = async (
 
   return userDocRef;
 };
+
+
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
