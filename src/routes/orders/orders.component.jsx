@@ -2,12 +2,21 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchOrdersStart } from '../../store/orders/orders.action';
-import { getOrdersHistory } from "../../utils/firebase/firebase.utils";
+import { selectOrders } from '../../store/orders/orders.selector';
 import Button from '../../components/button/button.component'
 import { selectCurrentUser } from '../../store/user/user.selector';
 
+import OrdersList from '../../components/orders-history/orders-history.component';
+
 const Orders = () => {
     const currentUser = useSelector(selectCurrentUser);
+    const ordersFirestore = useSelector(selectOrders);
+    const {orderHistory} = ordersFirestore.reduce((acc, order) => {
+        if(order.email === currentUser.email){
+            acc["orderHistory"] = order.history;
+        }
+        return acc;
+    },{});
 
     const dispatch = useDispatch();
 
@@ -16,18 +25,21 @@ const Orders = () => {
     }, [dispatch]);
 
     const handler = () => {
-        const newList = {};
-        getOrdersHistory().then((order) => console.log(newList));
+        
+       console.log(currentUser.uid === 'ofO0ZKIlRzfzNQOoNvKcKFR7q4x1');
         
     };
 
     return(
         <div>
-            {currentUser?
+            { currentUser?
             (
                 <div>
+                    <div>render</div>
+                    {orderHistory && orderHistory.map((order) => (
+                        <OrdersList key={order.orderNumber} details={order} orderList={order.details}/>
+                    ))}
                     <Button onClick={handler}>Get Items</Button>
-
                 </div>
             ):(
                 <span>unauthorized</span>

@@ -8,13 +8,15 @@ import Authentication from './routes/authentication/authentication.component';
 import Shop from './routes/shop/shop.component';
 import Checkout from './routes/checkout/checkout.component';
 import AdminPage from './routes/admin/admin.component';
-import Orders from './components/orders/orders.component';
+import Orders from './routes/orders/orders.component';
 import { setCurrentUser } from './store/user/user.action';
+import Footer from './components/footer/footer.component';
+
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
 } from './utils/firebase/firebase.utils';
-import Footer from './components/footer/footer.component';
+
 
 const App = () => {
   const dispatch = useDispatch();

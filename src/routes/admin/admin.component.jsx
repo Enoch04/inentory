@@ -1,19 +1,24 @@
-import { useSelector } from 'react-redux';
-import { selectAdminUser } from "../../store/user/user.selector";
-import { addOrderToUserHistory } from '../../utils/firebase/firebase.utils';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
+import { fetchOrdersStart } from '../../store/orders/orders.action';
+import { selectAdminUser } from '../../store/user/user.selector';
+import { selectOrders } from '../../store/orders/orders.selector';
+import OrdersListAdmin from '../../components/orders-history/orders-history-admin.component';
 import Button from '../../components/button/button.component'
-import { selectCurrentUser } from '../../store/user/user.selector';
-import { selectCartItems, selectCartTotal } from '../../store/cart/cart.selector';
 
 const AdminPage = () => {
     const adminHere = useSelector(selectAdminUser);
-    const currentUser = useSelector(selectCurrentUser);
-    const cartItems = useSelector(selectCartItems);
-    const cartTotal = useSelector(selectCartTotal);
+    const ordersHistory = useSelector(selectOrders);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchOrdersStart());
+    }, [dispatch]);
 
     const handler = () => {
-        addOrderToUserHistory(currentUser,cartItems,cartTotal).then(user => console.log(user));
-       //console.log(addOrderToUserHistory(currentUser));
+       ordersHistory.map(user => console.log(user));
+        
     };
 
     return(
@@ -21,7 +26,13 @@ const AdminPage = () => {
             {adminHere?
             (
                 <div>
-                    <Button onClick={handler}/>
+                    {ordersHistory.map(user => (
+                        <OrdersListAdmin orderList={user} />
+                        ))
+                    }
+                    <Button onClick={handler}>
+                        Admin page
+                    </Button>
 
                 </div>
             ):(

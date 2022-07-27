@@ -57,7 +57,7 @@ const PaymentForm = () => {
       alert(paymentResult.error.message);
     } else {
       if (paymentResult.paymentIntent.status === 'succeeded') {
-        addOrderToUserHistory(currentUser,cartItems,amount);
+        addOrderToUserHistory(cartItems,amount);
         dispatch(clearCart());
         navigate('/')
         alert('Payment Successful!');

@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import CartIcon from '../../components/cart-icon/cart-icon.component';
@@ -26,10 +26,12 @@ const Navigation = () => {
   const isCartOpen = useSelector(selectIsCartOpen);
   const adminUser = useSelector(selectAdminUser);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const signOutHandler = () => {
     signOutUser();
     dispatch(setAdminUser(false));
+    navigate('/');
   }
   return (
     <Fragment>
@@ -46,7 +48,7 @@ const Navigation = () => {
                   <li><NavLink as='span'>ACOUNT</NavLink>
                     <ul>
                       {adminUser ? (<li><NavLink to='/admin'>ADMIN</NavLink></li>): (<span />)}
-                      <li><NavLink to='/orders'>ORDERS</NavLink></li>
+                      {adminUser ? (<span />):(<li><NavLink to='/orders'>ORDERS</NavLink></li>)}
                       <li><NavLink as='span' onClick={signOutHandler}>SIGN OUT</NavLink></li>
                     </ul>
                   </li>

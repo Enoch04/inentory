@@ -66,9 +66,11 @@ export const addCollectionAndDocuments = async (
   console.log('done');
 };
 
-export const addOrderToUserHistory = async (userAuth,objectsToAdd, totalAmount) => {
-  const userDocRef = doc(db, 'users', userAuth.uid);
+export const addOrderToUserHistory = async (objectsToAdd, totalAmount,userAuth = 'mLqJYWRCE3QQnbU0YYmKtVH47b33') => {
   
+  
+  const userDocRef = doc(db, 'users', userAuth.uid);
+  console.log(userDocRef);
   const createdAt = new Date();
   const ran = Math.floor(Math.random() * 1000000);
   const order = { 
@@ -86,6 +88,7 @@ export const addOrderToUserHistory = async (userAuth,objectsToAdd, totalAmount) 
   } 
 };
 
+
 export const getOrdersHistory = async () => {
   const collectionRef = collection(db, 'users');
   const q = query(collectionRef);
@@ -93,6 +96,7 @@ export const getOrdersHistory = async () => {
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map((doc) => doc.data());
 };
+
 
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, 'categories');
