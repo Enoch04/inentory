@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useSelector, useDispatch } from 'react-redux';
-import { addOrderToUserHistory } from '../../utils/firebase/firebase.utils';
+import { addOrderToUserHistory, addOrderToGuestHistory } from '../../utils/firebase/firebase.utils';
 
 import { selectCartTotal, selectCartItems } from '../../store/cart/cart.selector';
 import { selectCurrentUser } from '../../store/user/user.selector';
@@ -57,7 +57,10 @@ const PaymentForm = () => {
       alert(paymentResult.error.message);
     } else {
       if (paymentResult.paymentIntent.status === 'succeeded') {
-        addOrderToUserHistory(cartItems,amount);
+        {currentUser ?
+        addOrderToUserHistory(cartItems,amount,currentUser,paymentResult.paymentIntent.id):
+        addOrderToGuestHistory(cartItems,amount,paymentResult.paymentIntent.id)
+        }
         dispatch(clearCart());
         navigate('/')
         alert('Payment Successful!');

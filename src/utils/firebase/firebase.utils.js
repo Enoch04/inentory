@@ -66,16 +66,15 @@ export const addCollectionAndDocuments = async (
   console.log('done');
 };
 
-export const addOrderToUserHistory = async (objectsToAdd, totalAmount,userAuth = 'mLqJYWRCE3QQnbU0YYmKtVH47b33') => {
-  
-  
+export const addOrderToUserHistory = async (objectsToAdd, totalAmount,userAuth,paymentID) => {
   const userDocRef = doc(db, 'users', userAuth.uid);
-  console.log(userDocRef);
+  
   const createdAt = new Date();
   const ran = Math.floor(Math.random() * 1000000);
   const order = { 
-    orderNumber : ran + 'D'+ createdAt.getDay(),
+    orderNumber : ran + 'U'+ createdAt.getDay(),
     createdAt,
+    paymentID: paymentID,
     total: totalAmount,
     details: objectsToAdd
   }
@@ -88,6 +87,27 @@ export const addOrderToUserHistory = async (objectsToAdd, totalAmount,userAuth =
   } 
 };
 
+export const addOrderToGuestHistory = async (objectsToAdd, totalAmount,paymentID) =>{
+  const userAuth = 'mLqJYWRCE3QQnbU0YYmKtVH47b33';
+  const userDocRef = doc(db,'users', userAuth);
+
+  const createdAt = new Date();
+  const ran = Math.floor(Math.random() * 1000000);
+  const order = {
+    orderNumber : ran + 'G'+ createdAt.getDay(), 
+    createdAt,
+    paymentID: paymentID,
+    total: totalAmount,
+    details: objectsToAdd
+  }
+  try{
+    await updateDoc(userDocRef,{
+    history: arrayUnion(order)
+    });
+  } catch(error){
+    console.log('error adding cart items to guest history', error.message);
+  } 
+};
 
 export const getOrdersHistory = async () => {
   const collectionRef = collection(db, 'users');
