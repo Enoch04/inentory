@@ -5,7 +5,7 @@ import HeroBackground from '../hero/hero';
 const categories = [
   {
     id: 1,
-    title: 'Home',
+    title: 'Menu',
     imageUrl: 'https://firebasestorage.googleapis.com/v0/b/crwn-clothing-41649.appspot.com/o/menu.png?alt=media&token=fac15b1b-9ada-4f12-a0b7-0baf0d3eb81d',
     route: 'shop/hats',
     desc: "Try our Sweat items!",

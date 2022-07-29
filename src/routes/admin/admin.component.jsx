@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import { SearchBox } from './admin.styles.jsx';
 
 import { fetchOrdersStart } from '../../store/orders/orders.action';
 import { selectAdminUser } from '../../store/user/user.selector';
@@ -24,25 +25,26 @@ const AdminPage = () => {
             user.displayName.toLowerCase().includes(searchField.toLowerCase()) ||
             user.email.toLowerCase().includes(searchField.toLowerCase())
         ))
-    },[searchField,ordersHistory])
+    },[searchField])
+
 
     // useEffect(() => {
-    //     setOrders(ordersHistory.filter(user => user.history.reduce((acc,order) => acc = order.orderNumber.includes(searchFieldOrder),[])))
+        // const ordersHistory.map(user => {
+            // user.history = user.history.filter(order =>  
+                // order.orderNumber.includes(searchFieldOrder));
+        // });
+        // console.log(orders);              
+        // setOrders(ordersHistory);
     // },[searchFieldOrder])
 
+
     const handler = () => {
-        ordersHistory.map(user =>{
-            
-            user.history.reduce((acc,order)=>{
-                if(order.orderNumber.includes(searchFieldOrder)){
-                    //console.log(order);
-                    console.log("order up");
-                    return acc = order;
-                }
-                console.log(acc);
-            },[])
-        })              
-        //console.log(ordersHistory);
+        const array = ordersHistory.map(user => {
+            user.history = user.history.filter(order =>  
+                order.orderNumber.includes(searchFieldOrder));
+        });
+        console.log(array);              
+        //setOrders(ordersHistory);
     };
 
     const onChangehandler = (event) => {
@@ -54,22 +56,31 @@ const AdminPage = () => {
     };
 
     return(
-        <div>
+        <Fragment>
             {adminHere?
             (
                 <div>
-                    <input
-                        className='search-box'
-                        type='search'
-                        placeholder='search users'
-                        onChange={onChangehandler}
-                    />
-                    <input
-                        className='search-box'
-                        type='search'
-                        placeholder='search orders'
-                        onChange={onChangeOrderhandler}
-                    />
+                    <SearchBox>
+                        <span>
+                            <span>User lookup: </span>
+                            <input
+                                className='search-box'
+                                type='search'
+                                placeholder='search users'
+                                onChange={onChangehandler}
+                            />
+                        </span>
+                        <span>
+                            <span>Order lookup: </span>
+                            <input
+                                className='search-box'
+                                type='search'
+                                placeholder='search orders'
+                                onChange={onChangeOrderhandler}
+                            />
+                        </span>
+                        
+                    </SearchBox>
                     {orders.map(user => (
                         <OrdersListAdmin orderList={user} />
                         ))
@@ -83,7 +94,7 @@ const AdminPage = () => {
                 <span>unauthorized</span>
             )}
 
-        </div>    
+        </Fragment>    
         
     )
 

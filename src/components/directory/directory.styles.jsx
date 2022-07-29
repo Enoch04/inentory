@@ -30,9 +30,9 @@ export const CategoriesContainer = styled.div`
     h4 {
       background-image: linear-gradient(
         to right,
-        #663300,
-        #663300 50%,
-        #000 50%
+        red,
+        red 50%,
+        white 50%
       );
       background-size: 200% 100%;
       background-position: -100%;

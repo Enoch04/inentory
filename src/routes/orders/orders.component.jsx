@@ -35,7 +35,6 @@ const Orders = () => {
             { currentUser?
             (
                 <div>
-                    <div>render</div>
                     {orderHistory && orderHistory.map((order) => (
                         <OrdersList key={order.orderNumber} details={order} orderList={order.details}/>
                     ))}
