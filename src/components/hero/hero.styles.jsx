@@ -61,7 +61,7 @@ export const HeroContainer = styled.div`
             padding-left: 50px;
             font-size: 60px;
         }
-        }
+    }
 `;
 
 
