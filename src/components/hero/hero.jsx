@@ -7,7 +7,7 @@ const HeroBackground = () => {
         <HomeContainer>
             <HeroContainer>
                 <h1>
-                    <Title>FOR THE NEXT BIG SORRY WE GOT YOU COVER</Title>
+                    <Title>Nothing says romance like chocolate covered strawberry 🍓</Title>
                 </h1>
             </HeroContainer>
         </HomeContainer>

@@ -32,9 +32,25 @@ export const NavigationContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media only screen and (max-width: 690px) {
+ 
+  @media only screen and (max-width: 830px) {
     ${Title} {
-      font-size: 20px;
+      font-size: 35px;
+    }
+  }
+  @media only screen and (max-width: 700px) {
+    ${Title} {
+      font-size: 27px;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    ${Title} {
+      font-size: 22px;
+    }
+  }
+  @media only screen and (max-width: 525px) {
+    ${Title} {
+      font-size: 18px;
     }
   }
 `;
@@ -42,6 +58,13 @@ export const NavigationContainer = styled.div`
 export const LogoContainer = styled(Link)`
   height: 100%;
   padding: 25px;
+
+  ${Title}{
+    position: relative;
+    float:right;
+    top: -20px;
+    margin-left: 20px;
+  }
 
   @keyframes slideInFromLeft {
     0% {
@@ -80,6 +103,9 @@ export const NavLink = styled(Link)`
 `;
 
 export const ListMenu = styled.nav`
+  ul{
+    border-radius: 20px;
+  }
   a {
     text-decoration: none;
   }
@@ -102,6 +128,7 @@ export const ListMenu = styled.nav`
     position: relative;
     text-decoration: none;
     transition-duration: 0.5s;
+    border-radius: 20px;
   }
     
   li a {
@@ -110,7 +137,7 @@ export const ListMenu = styled.nav`
 
   li:hover,
   li:focus-within {
-    background: grey;
+    background: pink;
     cursor: pointer;
   }
 
@@ -119,7 +146,7 @@ export const ListMenu = styled.nav`
   }
 
   ul li ul {
-    background: pink;
+    background: crimson;
     visibility: hidden;
     opacity: 0;
     min-width: 5rem;
@@ -143,6 +170,7 @@ export const ListMenu = styled.nav`
   ul li ul li {
     clear: both;
     width: 100%;
+    
   }
 `;
 

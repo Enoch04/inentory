@@ -8,6 +8,7 @@ import {
 } from './directory.styles';
 
 import HeroBackground from '../hero/hero';
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
   {
@@ -21,7 +22,7 @@ const categories = [
     id: 2,
     title: 'About us',
     imageUrl: 'https://firebasestorage.googleapis.com/v0/b/crwn-clothing-41649.appspot.com/o/karla.png?alt=media&token=7a21c69f-687e-483b-8955-35b00b672128',
-    route: 'shop/sneakers',
+    route: 'aboutUs',
     desc: `Sweat Hu$tle is part of a wave of succesful start-ups who are proving that
           fundamentally realigning the balance between profit and  can generate win-win
           relationshipa for everyone involved.`,
@@ -29,24 +30,20 @@ const categories = [
   
 ];
 
+
+
 const Directory = () => {
+  const navigate = useNavigate();
+
+  const onClickHandler = (e,route) => {
+  e.preventDefault();
+  navigate(route);
+};
   return (
     <DirectoryContainer >
       <HeroBackground />
       <ContentContainer>
-        <CategoriesContainer>
-          {categories.map((category) =>{
-            const { title, imageUrl, desc } = category;
-            return(
-            <Sec >
-              <CategoryCard>
-                <img src={ imageUrl } alt={title} />
-                <h2>{title}</h2>
-                <h4>{desc}</h4>
-              </CategoryCard>
-            </Sec>
-            )})}
-        </CategoriesContainer>
+        <div className='slogan'>Chocolate is cheaper than therapy</div>
         <DescriptionContainer>
               <DetailsContainer> 
                 <img src="https://firebasestorage.googleapis.com/v0/b/crwn-clothing-41649.appspot.com/o/plate-chocolate-covered-strawberries-table-119191268.jpg?alt=media&token=9c5f4234-669b-46e5-899a-ff6ac4d0d8d9"
@@ -76,8 +73,20 @@ const Directory = () => {
                 <img src="https://firebasestorage.googleapis.com/v0/b/crwn-clothing-41649.appspot.com/o/cup-chocolate-covered-strawberries-table-cup-chocolate-covered-strawberries-table-127818711.jpg?alt=media&token=b7510eb7-698e-44dd-a436-0bd7413eaec6"
                 alt="Chocolate cover straberries on table" />
               </DetailsContainer>
-              
-          </DescriptionContainer> 
+        </DescriptionContainer> 
+        <CategoriesContainer>
+        {categories.map((category) =>{
+          const { title, imageUrl, desc, route } = category;
+          return(
+          <Sec className='scroll-element js-scroll fade-in-bottom'>
+            <CategoryCard onClick={event => onClickHandler(event, route)}>
+              <img src={ imageUrl } alt={title} />
+              <h2>{title}</h2>
+              <h4>{desc}</h4>
+            </CategoryCard>
+          </Sec>
+          )})}
+        </CategoriesContainer>
           <section className='contact'>
             <div class="letter-image">
               <div class="animated-mail">

@@ -38,8 +38,9 @@ const Navigation = () => {
       <NavigationContainer>
         <LogoContainer to='/'>
           <CrwnLogo className='logo' />
+          <Title>sweat hu$tle</Title>
         </LogoContainer>
-        <Title>sweat hu$tle</Title>
+        
         <NavLinks>
             <ListMenu>
               <ul >

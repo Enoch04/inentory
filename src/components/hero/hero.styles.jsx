@@ -10,6 +10,7 @@ export const Title = styled.div`
     display: block;
     float: left;
     position: relative;
+    font-family: 'Fugaz One', cursive;
     top: 50px;
     left: 20px;
 
@@ -38,7 +39,6 @@ export const HeroContainer = styled.div`
     font-size: 36px;
     line-height: 70px;
     letter-spacing: 2px;
-    font-family: 'Shrikhand', cursive;
     overflow: hidden;
 
     width: 100%;
