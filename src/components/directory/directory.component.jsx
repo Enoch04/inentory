@@ -39,11 +39,28 @@ const Directory = () => {
   e.preventDefault();
   navigate(route);
 };
+
+const letterHandler = () => {
+  navigate('contact');
+}
   return (
     <DirectoryContainer >
       <HeroBackground />
       <ContentContainer>
         <div className='slogan'>Chocolate is cheaper than therapy</div>
+        <CategoriesContainer>
+        {categories.map((category) =>{
+          const { title, imageUrl, desc, route } = category;
+          return(
+          <Sec className='scroll-element js-scroll fade-in-bottom'>
+            <CategoryCard onClick={event => onClickHandler(event, route)}>
+              <img src={ imageUrl } alt={title} />
+              <h2>{title}</h2>
+              <h4>{desc}</h4>
+            </CategoryCard>
+          </Sec>
+          )})}
+        </CategoriesContainer>
         <DescriptionContainer>
               <DetailsContainer> 
                 <img src="https://firebasestorage.googleapis.com/v0/b/crwn-clothing-41649.appspot.com/o/plate-chocolate-covered-strawberries-table-119191268.jpg?alt=media&token=9c5f4234-669b-46e5-899a-ff6ac4d0d8d9"
@@ -74,20 +91,7 @@ const Directory = () => {
                 alt="Chocolate cover straberries on table" />
               </DetailsContainer>
         </DescriptionContainer> 
-        <CategoriesContainer>
-        {categories.map((category) =>{
-          const { title, imageUrl, desc, route } = category;
-          return(
-          <Sec className='scroll-element js-scroll fade-in-bottom'>
-            <CategoryCard onClick={event => onClickHandler(event, route)}>
-              <img src={ imageUrl } alt={title} />
-              <h2>{title}</h2>
-              <h4>{desc}</h4>
-            </CategoryCard>
-          </Sec>
-          )})}
-        </CategoriesContainer>
-          <section className='contact'>
+          <section onClick={ letterHandler } className='contact'>
             <div class="letter-image">
               <div class="animated-mail">
                 <div class="back-fold"></div>

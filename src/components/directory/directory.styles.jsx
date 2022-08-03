@@ -441,7 +441,6 @@ export const DescriptionContainer = styled.div`
         box-shadow: 0px 10px 9px #ccc;
       }
     }
-  
   }
   @media only screen and (max-width: 600px) {
     ${Sec} {

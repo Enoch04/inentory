@@ -16,6 +16,7 @@ import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
 } from './utils/firebase/firebase.utils';
+import ContactUs from './routes/contact/contact.component';
 
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
         <Route path='checkout' element={<Checkout />} />
         <Route path='admin' element={<AdminPage />} />
         <Route path='orders' element={<Orders />} />
+        <Route path='contact' element={<ContactUs />} />
       </Routes>
       <Footer />
     </>

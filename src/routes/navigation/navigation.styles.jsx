@@ -2,12 +2,15 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Title = styled.div`
+  width: 90%;
   color: white;
   text-transform: uppercase;
   font-size: 45px;
+  text-align: right;
   line-height: 70px;
   letter-spacing: 3px;
   font-family: 'Shrikhand', cursive;
+  padding-right: 40px;
 
   transform: skew(-10deg);
   
@@ -30,7 +33,6 @@ export const NavigationContainer = styled.div`
   height: 70px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
 
  
   @media only screen and (max-width: 830px) {
@@ -40,17 +42,8 @@ export const NavigationContainer = styled.div`
   }
   @media only screen and (max-width: 700px) {
     ${Title} {
-      font-size: 27px;
-    }
-  }
-  @media only screen and (max-width: 600px) {
-    ${Title} {
-      font-size: 22px;
-    }
-  }
-  @media only screen and (max-width: 525px) {
-    ${Title} {
-      font-size: 18px;
+      font-size: 25px;
+      padding-right: 20px;
     }
   }
 `;
@@ -58,6 +51,8 @@ export const NavigationContainer = styled.div`
 export const LogoContainer = styled(Link)`
   height: 100%;
   padding: 25px;
+  position: relative;
+  top: -10px;
 
   ${Title}{
     position: relative;
@@ -79,11 +74,11 @@ export const LogoContainer = styled(Link)`
 `;
 
 export const NavLinks = styled.div`
-  width: 35%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
   @keyframes slideInFromLeft {
     0% {
       transform: translateX(-100%);
@@ -92,8 +87,9 @@ export const NavLinks = styled.div`
       transform: translateX(0);
     }
   }
-
   animation: 1s ease-out 0s 1 slideInFromLeft;
+
+
 `;
 
 export const NavLink = styled(Link)`
@@ -153,7 +149,7 @@ export const ListMenu = styled.nav`
     position: absolute;
     transition: all 0.5s ease;
     margin-top: 1rem;
-    left: 0;
+    left: -85px;
     display: none;
   }
 

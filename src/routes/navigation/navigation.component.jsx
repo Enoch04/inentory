@@ -38,27 +38,32 @@ const Navigation = () => {
       <NavigationContainer>
         <LogoContainer to='/'>
           <CrwnLogo className='logo' />
-          <Title>sweat hu$tle</Title>
+          
         </LogoContainer>
-        
+        <Title>sweat hu$tle</Title>
         <NavLinks>
+            <CartIcon />
             <ListMenu>
               <ul >
-                <li><NavLink to='/shop'>SHOP</NavLink></li>
-                {currentUser ? (
-                  <li><NavLink as='span'>ACOUNT</NavLink>
+                  <li>
+                    <span class="material-symbols-outlined">menu</span>
                     <ul>
-                      {adminUser ? (<li><NavLink to='/admin'>ADMIN</NavLink></li>): (<span />)}
-                      {adminUser ? (<span />):(<li><NavLink to='/orders'>ORDERS</NavLink></li>)}
-                      <li><NavLink as='span' onClick={signOutHandler}>SIGN OUT</NavLink></li>
+                      <li><NavLink to='/shop'>SHOP</NavLink></li>
+                      {
+                        adminUser ? 
+                          (<li><NavLink to='/admin'>ADMIN</NavLink></li>): 
+                          (<li><NavLink to='/orders'>ORDERS</NavLink></li>)
+                      }
+                      {currentUser ? (
+                      <li><NavLink as='span' onClick={signOutHandler}>SIGN&nbsp;OUT</NavLink></li>
+                    
+                      ) : (
+                        <li><NavLink to='/auth'>SIGN IN</NavLink></li>
+                      )}
                     </ul>
                   </li>
-                ) : (
-                  <li><NavLink to='/auth'>SIGN IN</NavLink></li>
-                )}
               </ul>
             </ListMenu>
-          <CartIcon />
         </NavLinks>
         {isCartOpen && <CartDropdown />}
       </NavigationContainer>

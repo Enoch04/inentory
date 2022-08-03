@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchOrdersStart } from '../../store/orders/orders.action';
@@ -17,6 +17,7 @@ const Orders = () => {
         }
         return acc;
     },{});
+    const [ sortedOrders, setSortedOrders ] = useState(orderHistory);
 
     const dispatch = useDispatch();
 
@@ -24,9 +25,14 @@ const Orders = () => {
         dispatch(fetchOrdersStart());
     }, [dispatch]);
 
+    useEffect(() => {
+        setSortedOrders(orderHistory.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1)));
+    },[ordersFirestore])
+
     const handler = () => {
         
-       console.log(currentUser.uid === 'ofO0ZKIlRzfzNQOoNvKcKFR7q4x1');
+        const sorted = orderHistory.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
+        console.log(sorted);
         
     };
 
@@ -35,7 +41,7 @@ const Orders = () => {
             { currentUser?
             (
                 <div>
-                    {orderHistory && orderHistory.map((order) => (
+                    {sortedOrders && sortedOrders.map((order) => (
                         <OrdersList key={order.orderNumber} details={order} orderList={order.details}/>
                     ))}
                     <Button onClick={handler}>Get Items</Button>

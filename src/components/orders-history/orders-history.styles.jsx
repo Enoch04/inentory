@@ -22,13 +22,14 @@ export const DetailInfo = styled.div`
     justify-content: space-around;
     align-items: center;
     
+    
     margin-bottom: 10px;
     padding: 5px;
     border-radius: 10px;
     background-color: rgba(245, 39, 145, 0.18);
 
     div{
-        font-family: 'Shrikhand', cursive;
+        font-family: 'Fugaz One', cursive;
     }
 
     span{

@@ -1,14 +1,20 @@
+import { useNavigate } from 'react-router-dom';
 import { HeroContainer, HomeContainer, Title } from './hero.styles';
 
 
 const HeroBackground = () => {
     
+    const navigate = useNavigate();
+
+    const onClickMenuHandler = () => {
+        navigate('shop');
+    }
+
     return(
         <HomeContainer>
             <HeroContainer>
-                <h1>
-                    <Title>Nothing says romance like chocolate covered strawberry 🍓</Title>
-                </h1>
+                    <Title className='h1'>Chocolate is cheaper than <br/>therapy 🍓</Title>
+                    <span onClick={ onClickMenuHandler }>Checkout our menu!</span>
             </HeroContainer>
         </HomeContainer>
     );
