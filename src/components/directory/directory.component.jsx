@@ -90,8 +90,7 @@ const letterHandler = () => {
                 <img src="https://firebasestorage.googleapis.com/v0/b/crwn-clothing-41649.appspot.com/o/cup-chocolate-covered-strawberries-table-cup-chocolate-covered-strawberries-table-127818711.jpg?alt=media&token=b7510eb7-698e-44dd-a436-0bd7413eaec6"
                 alt="Chocolate cover straberries on table" />
               </DetailsContainer>
-        </DescriptionContainer> 
-          <section onClick={ letterHandler } className='contact'>
+              <section onClick={ letterHandler } className='contact'>
             <div class="letter-image">
               <div class="animated-mail">
                 <div class="back-fold"></div>
@@ -110,8 +109,9 @@ const letterHandler = () => {
               </div>
               <div class="shadow"></div>
             </div>
-            
           </section>
+        </DescriptionContainer> 
+          
       </ContentContainer>
     </DirectoryContainer>
   );

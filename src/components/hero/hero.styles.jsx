@@ -8,11 +8,8 @@ export const HomeContainer = styled.div`
 
 export const Title = styled.div`
     display: block;
-    float: left;
-    position: relative;
     font-family: 'Fugaz One', cursive;
-    top: 50px;
-    left: 20px;
+    text-align: center;
 
     margin: 50px auto;
     white-space: nowrap;
@@ -55,6 +52,8 @@ export const HeroContainer = styled.div`
     line-height: 70px;
     letter-spacing: 2px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
     width: 100%;
     height: 550px;
@@ -65,7 +64,7 @@ export const HeroContainer = styled.div`
     
     
     span{
-        margin-left: 100px;
+        margin: 0 auto;
         font-size: 30px;
         color: #fff;
         animation: glow 1s ease-in-out infinite alternate;

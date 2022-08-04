@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 
 export const DirectoryContainer = styled.div`
-  width: 100%;  
-`;
+  width: 100%; 
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/crwn-clothing-41649.appspot.com/o/vecteezy_cute-strawberry-cartoon-seamless-pattern-vector-background_.jpg?alt=media&token=89b685f5-cdb6-4874-adf4-acd8ca757084');
+  background-size: 100% 100%; 
+  background-repeat: no-repeat;
+  `;
 
 
 
 export const ContentContainer = styled.div`
   font-family: 'Source Sans Pro', sans-serif;
-
   text-align: center;
 
   .slogan{
@@ -17,6 +19,8 @@ export const ContentContainer = styled.div`
     font-family: 'Fugaz One', cursive;
     text-shadow: crimson 0px 0px, crimson 1px 1px, crimson 2px 2px, crimson 3px 3px, crimson 4px 4px, crimson 5px 5px;
   }
+
+
 
   .letter-image {
     font-weight: bold;
@@ -317,7 +321,6 @@ export const DescriptionContainer = styled.div`
 
   padding-bottom: 25px;
   margin: 0px auto;
-  margin: 80px auto;
   border-left: 3px solid #eb4034;
   border-right: 3px solid #eb4034;
   
