@@ -2,30 +2,44 @@ import styled from 'styled-components';
 
 export const DirectoryContainer = styled.div`
   width: 100%; 
-  background-image: url('https://firebasestorage.googleapis.com/v0/b/crwn-clothing-41649.appspot.com/o/vecteezy_cute-strawberry-cartoon-seamless-pattern-vector-background_.jpg?alt=media&token=89b685f5-cdb6-4874-adf4-acd8ca757084');
-  background-size: 100% 100%; 
-  background-repeat: no-repeat;
   `;
 
-
-
+  // background-image: url('https://firebasestorage.googleapis.com/v0/b/crwn-clothing-41649.appspot.com/o/vecteezy_cute-strawberry-cartoon-seamless-pattern-vector-background_.jpg?alt=media&token=89b685f5-cdb6-4874-adf4-acd8ca757084');
+  // background-size: 100% 100%; 
+  // background-repeat: no-repeat;
 export const ContentContainer = styled.div`
   font-family: 'Source Sans Pro', sans-serif;
   text-align: center;
 
+  .add {
+    width: 100%;
+    height: 550px;
+    
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/crwn-clothing-41649.appspot.com/o/fresas-chocolate.jpg?alt=media&token=735fa660-c5a5-4e30-8780-2619fd017927');
+    background-size: cover;
+    border-radius: 5px;
+
+    span {
+      font-size: 68px;
+      color: white;
+      font-family: 'Fugaz One', cursive;
+    }
+
+    ul {
+      font-size: 25px;
+    }
+  }
+  
   .slogan{
     font-size: 3em;
-    color: #e8e8e8;
+    color: crimson;
     font-family: 'Fugaz One', cursive;
-    text-shadow: crimson 0px 0px, crimson 1px 1px, crimson 2px 2px, crimson 3px 3px, crimson 4px 4px, crimson 5px 5px;
   }
-
-
 
   .letter-image {
     font-weight: bold;
     position: relative;
-    margin: 120px auto;
+    margin: 80px auto;
     width: 80px;
     height: 80px;
     -webkit-transform: translate(-50%, -50%);
@@ -192,7 +206,6 @@ export const CategoriesContainer = styled.div`
   justify-content: space-around;
   margin-top: 180px;
 
-  
 
   section:hover {
     box-shadow: 30px 30px 30px #ccc;
@@ -213,6 +226,8 @@ export const CategoriesContainer = styled.div`
       width: 250px;
       height: 250px;
       top: -150px;
+      border-radius: 10%;
+      transition: all 1s ease-in-out;
     }
 
     h4 {
@@ -222,8 +237,8 @@ export const CategoriesContainer = styled.div`
       top: -200px;
       background-image: linear-gradient(
         to right,
-        crimson,
-        crimson 50%,
+        #964B00 ,
+        #964B00 50%,
         white 50%
       );
       background-size: 200% 100%;
@@ -233,7 +248,7 @@ export const CategoriesContainer = styled.div`
       position: relative;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      transition: all 1s ease-in-out;
+      transition: all .7s ease-in-out;
     }
     
     h4:before {
@@ -261,26 +276,13 @@ export const CategoriesContainer = styled.div`
 export const Sec = styled.section`
   position: relative;
   top: -50px;
-  margin-bottom: 110px;
-
-  img {
-    width: 200px;
-    height: 200px;
-
-    border:2px solid crimson;
-    border-radius: 50%;
-
-    box-shadow: 0px 10px 9px #ccc;
-
-    position: relative;
-    top: -100px;    
-  }
+  margin-bottom: 110px; 
 `;
 
 export const CategoryCard = styled.div`
   width: 300px;
   height: 250px;
-  background-color: rgba(222, 115, 115, 0.54);
+  background-color: rgba(222, 115, 115, 0.3);
 
   display: flex;
   flex-direction: column;
@@ -289,8 +291,19 @@ export const CategoryCard = styled.div`
   border-radius: 10px;
   border: 2px solid #800000;
 
+  img {
+      width: 200px;
+      height: 200px;
+
+      border:2px solid crimson;
+      border-radius: 50%;
+      box-shadow: 0px 10px 9px #ccc;
+
+      position: relative;
+      top: -100px;    
+  }
+
   h4 {
-    color: #800000;
     display:none;
   }
 
@@ -298,11 +311,9 @@ export const CategoryCard = styled.div`
     position: relative;
     top: -100px;
     font-size: 2em;
-    color: pink;
-    font-family: 'Shrikhand', cursive;
-    text-shadow: #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px, #533d4a 5px 5px, #533d4a 6px 6px;
+    color: crimson;
+    font-family: 'Fugaz One', cursive;
   }
-  
 `;
 
 export const DetailsContainer = styled.div`
@@ -371,7 +382,7 @@ export const DescriptionContainer = styled.div`
   }
 
   .desc{
-    color: #593c1c;
+    color: #964B00 ;
     font-size: 1.5em;
     font-weight: bold;
     width: 70%;
@@ -382,7 +393,7 @@ export const DescriptionContainer = styled.div`
   h1{
     font-size: 2em;
     color: pink;
-    font-family: 'Shrikhand', cursive;
+    font-family: 'Fugaz One', cursive;
     text-shadow: #533d4a 0px 0px, #533d4a 1px 1px, #533d4a 2px 2px, #533d4a 3px 3px, #533d4a 4px 4px, #533d4a 5px 5px;
     width: 85%;
     margin: 10px auto;

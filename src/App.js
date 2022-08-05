@@ -17,6 +17,7 @@ import {
   createUserDocumentFromAuth,
 } from './utils/firebase/firebase.utils';
 import ContactUs from './routes/contact/contact.component';
+import AboutUs from './routes/about-us/about-us.component';
 
 
 const App = () => {
@@ -37,13 +38,14 @@ const App = () => {
     <>
       <Navigation />
       <Routes>
-        <Route index element={<Home />} />
-        <Route path='shop/*' element={<Shop />} />
-        <Route path='auth' element={<Authentication />} />
-        <Route path='checkout' element={<Checkout />} />
-        <Route path='admin' element={<AdminPage />} />
-        <Route path='orders' element={<Orders />} />
-        <Route path='contact' element={<ContactUs />} />
+        <Route index element={ <Home />} />
+        <Route path='shop/*' element={ <Shop />} />
+        <Route path='auth' element={ <Authentication />} />
+        <Route path='checkout' element={ <Checkout />} />
+        <Route path='admin' element={ <AdminPage />} />
+        <Route path='orders' element={ <Orders />} />
+        <Route path='contact' element={ <ContactUs />} />
+        <Route path='aboutUs' element={ <AboutUs />} />
       </Routes>
       <Footer />
     </>
